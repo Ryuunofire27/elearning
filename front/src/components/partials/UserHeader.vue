@@ -1,18 +1,13 @@
 <template lang="pug">
-AppConsumer
-  div(slot-scope="app")
+  div
     div
       img
     div
-      button(@click="app.fn.logout") logout
+      button logout
 </template>
 <script>
-import { Consumer as AppConsumer } from "../../AppContext";
 
 export default {
   name: 'UserHeader',
-  components: {
-    'AppConsumer': AppConsumer
-  }
 }
 </script>

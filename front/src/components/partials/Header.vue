@@ -1,29 +1,36 @@
 <template lang="pug">
-  AppConsumer
-    header.header(slot-scope="app" :style="getData(app)")
+    header.header
       div
         router-link(to="/") Home 
-      div Hola soy un header chidorongo {{ app.data.user }}
-      button(@click="app.fn.setUser('usuario')") click me
-      UserHeader(v-if="app.data.user")
+      div Hola soy un header chidorongo
+      button click me
+      UserHeader(v-if="user")
       ul(v-else)
         li 
-          router-link(to="/login") Login
+          //router-link(to="/login") Login
+          button(@click="login") Login
         li 
           router-link(to="/signup") Signup
 </template>
 <script>
-import { Consumer as AppConsumer } from "../../AppContext";
 export default {
   name: 'Header',
+  data: function(){
+    return {
+      user: null
+    }
+  },
+  created(){
+    console.log(this.$store.state.user.user)
+    this.user = this.$store.state.user.user;
+  },
   components: {
-    AppConsumer,
     'UserHeader': () => import('./UserHeader')
   },
   methods: {
-    getData: function(data){
-      console.log(data);
-      return ''
+    login: function(){
+      this.user = this.$store.commit('user/login');
+      console.log(this.user)
     }
   }
 }

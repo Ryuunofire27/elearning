@@ -2,6 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from "vue";
 import VueRouter from 'vue-router';
+import store from './store';
 
 Vue.config.productionTip = false;
 
@@ -30,33 +31,7 @@ const router = new VueRouter({
 
 /* eslint-disable no-new */
 
-const store = {
-  debug: 'true',
-  state: {
-    user: 'true'
-  },
-  setUser: function(user){
-    console.log(this)
-    console.log(user);
-    this.state.user = user;
-  },
-  logout: function(){
-    this.state.user = null;
-  }
-}
-
-store.setUser = store.setUser.bind(store);
-store.logout = store.logout.bind(store);
-
-const fn = {
-  setUser: store.setUser,
-  logout: store.logout
-}
-
 new Vue({
   router,
-  data: {
-    app: store.state,
-    fn
-  }
+  store,
 }).$mount('#app');
