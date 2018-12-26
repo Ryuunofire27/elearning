@@ -1,8 +1,11 @@
 <template lang="pug">
-  div
+  .col-xs-12
     Header
-    router-view
+    .container
+      transition(name="fade")
+        router-view
     Footer
+    Modal(v-if="$store.state.isLoading")
 </template>
 <script>
 export default {
@@ -11,6 +14,7 @@ export default {
   components: {
     'Header': () => import('./partials/Header'),
     'Footer': () => import('./partials/Footer'),
+    'Modal': () => import('./partials/Modal')
   }
 }
 </script>

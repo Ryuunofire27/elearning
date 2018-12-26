@@ -5,6 +5,17 @@ import user from './modules/user';
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+  state: {
+    isLoading: false
+  },
+  mutations: {
+    loading(){
+      this.state.isLoading = true;
+    },
+    loaded(){
+      this.state.isLoading = false;
+    }
+  },
   modules: {
     user
   },
